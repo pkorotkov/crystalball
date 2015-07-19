@@ -8,6 +8,7 @@ apt-get install -y crystal
 # Install development required packages.
 apt-get install -y make
 wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
+apt-get update
 # Set LLVM bound to 3.5 release.
 apt-get install -y clang-3.5 lldb-3.5
 apt-get install -y libgmp3-dev zlib1g-dev libedit-dev libxml2-dev libssl-dev libyaml-dev libreadline-dev
