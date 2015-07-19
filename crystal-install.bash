@@ -7,7 +7,9 @@ echo "deb http://dist.crystal-lang.org/apt crystal main" > /etc/apt/sources.list
 apt-get install -y crystal
 # Install development required packages.
 apt-get install -y make
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -
+wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
 # Set LLVM bound to 3.5 release.
 apt-get install -y clang-3.5 lldb-3.5
-apt-get install -y libz-dev libedit-dev libssl-dev libevent-dev libpcre3-dev libgc-dev libunwind-dev
+apt-get install -y libgmp3-dev zlib1g-dev libedit-dev libxml2-dev libssl-dev libyaml-dev libreadline-dev
+echo 'export LIBRARY_PATH="/opt/crystal/embedded/lib"' > /etc/profile.d/crystal.sh
+echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> /etc/profile.d/crystal.sh
