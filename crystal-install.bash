@@ -13,4 +13,4 @@ apt-get update
 apt-get install -y clang-3.5 lldb-3.5
 apt-get install -y libgmp3-dev zlib1g-dev libedit-dev libxml2-dev libssl-dev libyaml-dev libreadline-dev
 echo 'export LIBRARY_PATH="/opt/crystal/embedded/lib"' > /etc/profile.d/crystal.sh
-echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> /etc/profile.d/crystal.sh
+#echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> /etc/profile.d/crystal.sh
