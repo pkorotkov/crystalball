@@ -1,16 +1,18 @@
 #!/bin/bash
 
 # Install bootstrapping crystal toolchain.
-curl http://dist.crystal-lang.org/apt/setup.sh | bash
-apt-key adv --keyserver keys.gnupg.net --recv-keys 09617FD37CC06B54
-echo "deb http://dist.crystal-lang.org/apt crystal main" > /etc/apt/sources.list.d/crystal.list
-apt-get install -y crystal
-# Install development required packages.
-apt-get install -y make
-wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
-apt-get update
-# Set LLVM bound to 3.5 release.
-apt-get install -y clang-3.5 lldb-3.5
-apt-get install -y libgmp3-dev zlib1g-dev libedit-dev libxml2-dev libssl-dev libyaml-dev libreadline-dev
-echo 'export LIBRARY_PATH="/opt/crystal/embedded/lib"' > /etc/profile.d/crystal.sh
-#echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> /etc/profile.d/crystal.sh
+curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
+sudo apt-get install -y crystal
+
+# Clone the latest codebase snapshot.
+git clone https://github.com/manastech/crystal.git
+
+# Install required dependencies.
+sudo apt-get install -y make g++ llvm-3.6 libbsd-dev libedit-dev libevent-core-2.0-5 libevent-extra-2.0-5 libevent-openssl-2.0-5 libevent-pthreads-2.0-5 libevent-dev libgc-dev libpcl1 libpcl1-dev libunwind8 libunwind8-dev libgmpxx4ldbl libgmp-dev libxml2-dev libyaml-dev libreadline6-dev lib32z1-dev
+
+# Build the snapshot crystal compiler.
+cd crystal/
+make
+
+# Add $CRYSTAL environment variable. 
+echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> $HOME/.bashrc
