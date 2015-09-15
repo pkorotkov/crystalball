@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export LIBRARY_PATH=/opt/crystal/embedded/lib/
 git pull
+export LIBRARY_PATH=/opt/crystal/embedded/lib/
 make
