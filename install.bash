@@ -21,7 +21,7 @@ export LIBRARY_PATH=/opt/crystal/embedded/lib/
 make
 
 # Put an updater to the crystal snapshot directory.
-wget https://github.com/pkorotkov/crystalball/blob/master/update.bash
+wget https://github.com/pkorotkov/crystalball/raw/master/update.bash
 chmod +x ./update.bash
 
 # Add $CRYSTAL environment variable. 
