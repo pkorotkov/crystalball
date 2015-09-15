@@ -20,8 +20,8 @@ cd crystal/
 export LIBRARY_PATH=/opt/crystal/embedded/lib/
 make
 
-# Put updater to the crystal snapshot directory
-https://github.com/pkorotkov/crystalball/blob/master/update.bash
+# Put an updater to the crystal snapshot directory.
+wget https://github.com/pkorotkov/crystalball/blob/master/update.bash
 
 # Add $CRYSTAL environment variable. 
 echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> $HOME/.bashrc
