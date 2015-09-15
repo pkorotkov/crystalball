@@ -8,32 +8,20 @@ sudo apt-get install -y crystal
 git clone https://github.com/manastech/crystal.git
 
 # Install required dependencies.
-sudo apt-get install -y\
-make\
-g++\
-llvm-3.6\
-libbsd-dev\
-libedit-dev\
-libevent-core-2.0-5\
-libevent-extra-2.0-5\
-libevent-openssl-2.0-5\
-libevent-pthreads-2.0-5\
-libevent-dev\
-libgc-dev\
-libpcl1\
-libpcl1-dev\
-libunwind8\
-libunwind8-dev\
-libgmpxx4ldbl\
-libgmp-dev\
-libxml2-dev\
-libyaml-dev\
-libreadline6-dev\
+sudo apt-get install -y \
+make \
+g++ \
+llvm-3.6 \
+libedit-dev \
 lib32z1-dev
 
 # Build the snapshot crystal compiler.
 cd crystal/
+export LIBRARY_PATH=/opt/crystal/embedded/lib/
 make
+
+# Put updater to the crystal snapshot directory
+https://github.com/pkorotkov/crystalball/blob/master/update.bash
 
 # Add $CRYSTAL environment variable. 
 echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> $HOME/.bashrc
