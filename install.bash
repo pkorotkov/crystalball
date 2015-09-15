@@ -22,6 +22,7 @@ make
 
 # Put an updater to the crystal snapshot directory.
 wget https://github.com/pkorotkov/crystalball/blob/master/update.bash
+chmod +x ./update.bash
 
 # Add $CRYSTAL environment variable. 
 echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> $HOME/.bashrc
