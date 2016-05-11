@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set the directory path of this script.
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Install bootstrapping crystal toolchain.
 curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
 sudo apt-get install -y crystal
@@ -16,13 +19,13 @@ libedit-dev \
 lib32z1-dev
 
 # Build the snapshot crystal compiler.
-cd crystal/
+cd ./crystal/
 export LIBRARY_PATH=/opt/crystal/embedded/lib/
 make
 
 # Put an updater to the crystal snapshot directory.
-wget https://github.com/pkorotkov/crystalball/raw/master/update.bash
-chmod +x ./update.bash
+# wget https://github.com/pkorotkov/crystalball/raw/master/update.bash
+chmod +x $SCRIPT_DIR/update.bash
 
 # Add $CRYSTAL environment variable. 
 echo 'export CRYSTAL="$HOME/crystal/.build/crystal"' >> $HOME/.bashrc
