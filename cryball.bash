@@ -21,16 +21,21 @@ case "$1" in
         sudo apt-get install -y make g++ llvm-3.6 libedit-dev lib32z1-dev
         # Clone the latest codebase snapshot.
         git clone https://github.com/crystal-lang/crystal.git $2
-        # Go to installation directory.
+        # Go to the installation directory.
         cd $2
-        # Build the snapshot of crystal compiler.
+        # Build a snapshot of the crystal compiler.
         export LIBRARY_PATH=${EMBEDDED_LIB_PATH}
         make
-        # Create alias for snapshot crystal compiler.
         SCRIPT_DIR_PATH=$( cd $(dirname $0) ; pwd -P )
         SCRIPT_NAME=`basename $0`
-        echo "export SHCRYSTAL_DIR_PATH=$2" >> $HOME/.bashrc
-        echo "alias shcrystal=\"${SCRIPT_DIR_PATH}/${SCRIPT_NAME} execute $2\"" >> $HOME/.bashrc
+        # TODO: Think about the file (now - $HOME/.bachrc) where env variables and aliases should be written in.
+        ENV_FILE=${HOME}/.bashrc
+        # Delete old env lines (which contain strings 'SHCRYSTAL_DIR_PATH' or 'shcrystal') from ENV_FILE.
+        sed '/SHCRYSTAL_DIR_PATH\|shcrystal/d' ${ENV_FILE}
+        # Add assuredly new env lines.
+        echo "export SHCRYSTAL_DIR_PATH=$2" >> ${ENV_FILE}
+        # Create an alias for the crystal compiler snapshot.
+        echo "alias shcrystal=\"${SCRIPT_DIR_PATH}/${SCRIPT_NAME} execute $2\"" >> ${ENV_FILE}
     ;;
     "update")
         cd ${SHCRYSTAL_DIR_PATH}
