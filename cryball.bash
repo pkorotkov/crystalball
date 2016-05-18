@@ -33,7 +33,7 @@ case "$1" in
         # Delete old env lines (which contain strings 'SHCRYSTAL_DIR_PATH' or 'shcrystal') from ENV_FILE.
         sed -i '/SHCRYSTAL_DIR_PATH\|shcrystal/d' ${ENV_FILE}
         # Add assuredly new env lines.
-        echo "export SHCRYSTAL_DIR_PATH=$2" >> ${ENV_FILE}
+        echo "export SHCRYSTAL_DIR_PATH=${2}" >> ${ENV_FILE}
         # Create an alias for the crystal compiler snapshot.
         echo "alias shcrystal=\"${SCRIPT_DIR_PATH}/${SCRIPT_NAME} execute\"" >> ${ENV_FILE}
     ;;
