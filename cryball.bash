@@ -26,7 +26,7 @@ case "$1" in
         # Build a snapshot of the crystal compiler.
         export LIBRARY_PATH=${EMBEDDED_LIB_PATH}
         make
-        SCRIPT_DIR_PATH=$( cd ${(dirname $0)} ; pwd -P )
+        SCRIPT_DIR_PATH=$( cd $(dirname $0) ; pwd -P )
         SCRIPT_NAME=`basename $0`
         # TODO: Think about the file (now - $HOME/.bachrc) where env variables and aliases should be written in.
         ENV_FILE=${HOME}/.bashrc
@@ -35,7 +35,7 @@ case "$1" in
         # Add assuredly new env lines.
         echo "export SHCRYSTAL_DIR_PATH=$2" >> ${ENV_FILE}
         # Create an alias for the crystal compiler snapshot.
-        echo "alias shcrystal=\"${SCRIPT_DIR_PATH}/${SCRIPT_NAME} execute $2\"" >> ${ENV_FILE}
+        echo "alias shcrystal=\"${SCRIPT_DIR_PATH}/${SCRIPT_NAME} execute\"" >> ${ENV_FILE}
     ;;
     "update")
         cd ${SHCRYSTAL_DIR_PATH}
