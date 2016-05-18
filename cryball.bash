@@ -4,10 +4,17 @@ echoerr() {
     echo "$@" 1>&2;
 }
 
+OS=$(lsb_release -si)
+
+if [[ "${OS,,}" -ne "ubuntu" ]]; then
+    echoerr "error: unsupported OS"
+    exit 1
+fi
+
 # Check if at least two arguments are passed.
 if [ "$#" -lt 1 ]; then
     echoerr "error: incorrect list of arguments"
-    exit 1
+    exit 2
 fi
 
 EMBEDDED_LIB_PATH=/opt/crystal/embedded/lib/
@@ -53,6 +60,6 @@ case "$1" in
     ;;
     *)
         echoerr "error: unknown command"
-        exit 2
+        exit 3
     ;;
 esac
